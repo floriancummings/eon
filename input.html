@@ -1,0 +1,122 @@
+<div class="container">
+<div class="row centered">
+        <div class="col-md-4 text-center col-offset-4  col-xs-4 col-xs-offset-4  ">
+          <img class="img-rounded img-responsive text-center" src="images/IMG-20161104-WA0002-1.ico">
+            </h1>
+        </div>
+    
+    </div>
+
+
+</div>
+    
+
+<hr>
+
+<div>
+    
+      
+        <form class="form-horizontal">
+           <div class="form-group">
+    <label for="exampleInputEmail1" class="col-md-3 control-label">University</label>
+               <div class="col-md-5">
+     <select required ng-model="mine.university" class="form-control">
+                    <option ng-repeat='i in u' ng-click = "setuni(i.university)">{{i.university}}</option>
+ 
+                    </select>
+    </div>
+ 
+  </div>
+            <div class="form-group">
+    <label for="exampleInputEmail1" class="col-md-3 control-label">Course</label>
+               <div class="col-md-5">
+     <select required ng-model="mine.course" class="form-control">
+                    <option ng-repeat='course in This(mine.university).courses' ng-click = "setc(course)">{{course}}</option>
+ 
+                    </select>
+    </div>
+ 
+  </div>
+
+  <div class="form-group  {{e(mine.jamb_score)}}">
+     
+    <label for="exampleInputName2" class="col-md-3 control-label">Jamb score</label>
+      <div class="col-md-5">
+    <input ng-required="true" pattern=\b([1-3]?\d{1,2}|400) ng-mouseleave="entered = false" ng-mouseenter="entered = true" type="text" class="form-control" ng-model ="mine.jamb_score" id="exampleInputName2" placeholder="Jamb Score">
+      </div>
+      
+  </div>
+    
+    <br>
+            <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+            
+            <table class="table">
+        <thead>
+            <tr>
+                <td class="a">&#35;</td>
+                <td class="a">Subject</td>
+                <td class="a">Grade</td>
+                <td class="a">&nbsp;</td>
+            </tr>
+        
+        </thead>
+        <tbody>
+            <tr>
+                <td>&ensp;</td>
+                <td> 
+                   <select ng-model="new.name" class="form-control">
+                    <option ng-repeat='s in titles' ng-click = "setName(s)">{{s}}</option>
+ 
+                    </select>
+                  </td>
+                <td>
+                     <select ng-model="new.grade" class="form-control">
+                    <option ng-repeat='grade in grades' ng-click = "setGrade(grade)">{{grade}}</option>
+ 
+                    </select>
+                </td>
+                <td><button type="button" ng-click ='Add(new)' class="btn btn-primary">Add</button></td>
+            </tr>
+            <tr ng-repeat ="subject in mine.subjects | orderBy:'name'">
+                <td>{{$index+1}} </td>
+                <td>{{subject.name}}</td>
+                <td>{{subject.grade}}</td>
+                <td><button type="button" ng-click="Remove(subject)"class="btn btn-primary">Remove</button></td>
+            
+            </tr>
+        
+        </tbody>
+    </table>
+            
+            </div>
+            
+    
+    <br>
+    <div class="form-group">
+        <div class="col-md-6 col-xs-6">          
+            <button ng-click='Aggregate()' type="Submit" class=" btn btn-primary">Aggregate</button>&nbsp;
+            
+                
+                  
+        </div>       
+        <div class="col-md-6 col-xs-6">      
+            <h5 class="pull-right">{{mine.aggregate}}%</h5>
+        </div>
+    
+    </div>
+            </div>
+        </form>
+   <div class="row">
+     <div ng-show="info" class="col-md-5 col-xs-offset-3 col-xs-5 alert alert-warning alert-dismissible" role="alert">
+  <button type="button" ng-click="info=''" class=" close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Oops!</strong> {{info}}
+</div>
+    
+    </div>
+   
+        
+        
+    
+    
+</div>
